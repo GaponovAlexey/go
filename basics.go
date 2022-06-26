@@ -27,19 +27,28 @@ func main() {
 	//create in out
 	i, j := 1, 2
 	fmt.Println(i, j, c, pytohon, java)
-	//Printf %T %v 
+	//Printf %T %v
 	fmt.Printf("type: %T Value: %v\n", ToBe, ToBe)
 	fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
 	fmt.Printf("Type: %T Value: %v\n", z, z)
 	//type %q string
 	b, s := 22, "dsad"
 	fmt.Printf("%v %q\n", b, s)
-	
-	x, y := 3, 5
-	f := math.Sqrt(float64(x*y + y*y))
-	z := (f)
-	fmt.Println(x, y, z);
-	
+	//conversions Sqrt
+	x, y := 3, 4
+	var f float64 = math.Sqrt(float64(x*x + y*y))
+	var z uint = uint(f)
+	fmt.Println(x, y, z)
+	//type int
+	v := 42i    // change me!
+	vv := 42.22 // change me!
+	fmt.Printf("v is of type %T\n", v)
+	fmt.Printf("vv is of type %T\n", vv)
+	//const
+	const Big = 1 << 100
+	sm := Big >> 99
+	fmt.Printf("type sm %v",sm)
+
 }
 
 var (
