@@ -1,0 +1,6 @@
+{
+  "Print to console": {
+    "prefix": "ff1",
+    "body": ["fmt.Printf($1)", "$2"]
+  }
+}
