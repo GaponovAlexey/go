@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	//type
 	bob := Cats{"Bob", 7, 0.92}
 	fmt.Println(bob.happiness)
 	//time
@@ -47,7 +46,7 @@ func main() {
 	//const
 	const Big = 1 << 100
 	sm := Big >> 99
-	fmt.Printf("type sm %v",sm)
+	fmt.Printf("type sm %v", sm)
 
 }
 
