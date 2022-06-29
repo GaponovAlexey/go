@@ -3,11 +3,16 @@ package main
 import (
 	"errors"
 	"fmt"
+	"log"
 )
 
 func main() {
-	a, b := enterTheClub(222)
-	fmt.Println(a, b)
+	a, err := enterTheClub(22)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	fmt.Println(a)
 
 }
 
