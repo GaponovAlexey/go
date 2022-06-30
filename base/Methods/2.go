@@ -1,11 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
-	x:= 0
-	fmt.Println(&x)
-	z:= &x
-	fmt.Println(*z)
-	
+	mass := [3]string{"1", "2", "3"}
+	print(mass)
+
+}
+
+func print(mass [3]string) error {
+	if len(mass) == 0 {
+		return errors.New("Nothing")
+	}
+	mass[1] = "5"
+	fmt.Println(mass)
+	return nil
+
 }
