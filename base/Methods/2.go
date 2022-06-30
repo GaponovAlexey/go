@@ -2,12 +2,10 @@ package main
 
 import "fmt"
 
-var msg string
-func init() {
-	msg = "This is init"
-}
-
 func main() {
-	fmt.Println(msg)
-
+	x:= 0
+	fmt.Println(&x)
+	z:= &x
+	fmt.Println(*z)
+	
 }
