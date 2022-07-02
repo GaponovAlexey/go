@@ -4,22 +4,15 @@ import (
 	"fmt"
 )
 
-type Tuser struct {
-	name   string
-	age    int
-	sex    string
-	weight int
-	height int
-}
+type Age int
 
 func main() {
-	user1 := Tuser{"Vasia", 22, "male", 76, 122}
+	// user1 := Tuser{"Vasia", 22, "male", 76, 122}
 
-	user1.printUser("Ivan")
+	fmt.Println(Age.isAge(22))
+
 }
 
-func (u Tuser) printUser(name string) {
-	u.name = name
-	fmt.Println(u.age, u.name)
-
+func (a Age) isAge() bool {
+	return a >= 20
 }
