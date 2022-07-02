@@ -14,12 +14,10 @@ type Tuser struct {
 
 func main() {
 	user1 := Tuser{"Vasia", 22, "male", 76, 122}
-
-	user1.printUser("Ivan")
+	
+	user1.PrintUser()
 }
 
-func (u Tuser) printUser(name string) {
-	u.name = name
-	fmt.Println(u.age, u.name)
-
+func (u Tuser) PrintUser() {
+	fmt.Println(u.age)
 }
