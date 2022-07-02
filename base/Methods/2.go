@@ -4,10 +4,12 @@ import (
 	"fmt"
 )
 
+type st struct {
+	name string
+}
+
 func main() {
-	user := []int{2, 4, 5, 6, 7}
-	user = append(user, 33)
-	fmt.Println(len(user))
-	fmt.Println(cap(user))
+	d := st{}
+	fmt.Printf("%+v",d)
 
 }
