@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func main() {
-	fmt.Println("my module")
-
+	time := time.UTC().Day()
+	fmt.Println(time)
+	
 }
