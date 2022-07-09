@@ -5,6 +5,7 @@ import "fmt"
 func main() {
 	fmt.Println("cal")
 	fmt.Println("какое число (+, -, * ,/, %)")
+	
 	var action string
 	fmt.Scan(&action)
 	var a float64
