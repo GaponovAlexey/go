@@ -29,8 +29,6 @@ func main() {
 	for i := 0; i < 1000; i++ {
 		go c.Inc(key)
 	}
-
 	time.Sleep(time.Second * 3)
 	fmt.Println(c.Value(key))
-
 }
