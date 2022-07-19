@@ -1,26 +1,23 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
+
+type IPAddr [4]byte
+
+// func (p IPAddr) String() string {
+// 	return fmt.Sprintf("%v (%v years)", p.String(), p.String())
+// }
 
 func main() {
-	ch := make(chan int)
-
-	go func(ch chan int) {
-		fmt.Println("start")
-		fmt.Println(<-ch)
-	}(ch)
-
-	go func() {
-		for i := 0; i <= 5; i++ {
-			time.Sleep(time.Second)
-			fmt.Println("_")
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	fmt.Println(hosts)
+	
+	for name, ip := range hosts {
+		for i := range ip {
+			fmt.Printf("%v: %v\n", name, ip[i])
 		}
-	}()
-	time.Sleep(2500 * time.Millisecond)
-	ch <- 5
-
-	time.Sleep(3 * time.Second)
+	}
 }
