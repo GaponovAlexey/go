@@ -2,22 +2,18 @@ package main
 
 import "fmt"
 
-type IPAddr [4]byte
-
-// func (p IPAddr) String() string {
-// 	return fmt.Sprintf("%v (%v years)", p.String(), p.String())
-// }
-
-func main() {
-	hosts := map[string]IPAddr{
-		"loopback":  {127, 0, 0, 1},
-		"googleDNS": {8, 8, 8, 8},
-	}
-	fmt.Println(hosts)
-	
-	for name, ip := range hosts {
-		for i := range ip {
-			fmt.Printf("%v: %v\n", name, ip[i])
+func Index[T comparable](s []T, x T) int {
+	for i, v := range s {
+		if v == x {
+			return i
 		}
 	}
+	return -1
+}
+
+func main() {
+	si := []int{10, 20}
+	fmt.Println(Index(si, 15))
+	ss := []string{"foo", "bar", "baz"}
+	fmt.Println(Index(ss, "hello"))
 }
