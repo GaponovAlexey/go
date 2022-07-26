@@ -52,8 +52,34 @@ func main() {
 	da := cb.CPU("cor i9").RAM(64).MB("gigabate").Builder()
 	fmt.Println(da)
 
+	net := NewCF()
+	net.RAM(22)
+	n := net.Builder()
+	fmt.Println(n)
+
 }
 
 type officeComputerBuilder struct {
 	computerBuilder
+}
+
+func NewCF() ComputerBuilder {
+	return &officeComputerBuilder{}
+}
+
+func (b *officeComputerBuilder) Builder() Computer {
+	if b.cpu == "" {
+		b.CPU("Pentium")
+	}
+	if b.ram == 0 {
+		b.RAM(2)
+	}
+	if b.mb == "" {
+		b.MB("gigabate")
+	}
+	return Computer{
+		CPU: b.cpu,
+		RAM: b.ram,
+		MB:  b.mb,
+	}
 }
