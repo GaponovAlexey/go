@@ -2,33 +2,58 @@ package main
 
 import "fmt"
 
-type R interface {
-	F() string
+type Computer struct {
+	CPU string
+	RAM int
+	MB  string
 }
 
-type T struct {
-	ST int
-}
-type TT struct {
-	TT string
+type ComputerBuilder interface {
+	CPU(val string) ComputerBuilder
+	RAM(val int) ComputerBuilder
+	MB(val string) ComputerBuilder
+
+	Builder() Computer
 }
 
-func (s *T) F() string {
-	return fmt.Sprintf("%#v", s)
+type computerBuilder struct {
+	cpu string
+	ram int
+	mb  string
 }
-func (s *TT) F() string {
-	return fmt.Sprintf("%#v", s)
+
+func NewCB() ComputerBuilder {
+	return computerBuilder{}
+}
+
+func (b computerBuilder) CPU(val string) ComputerBuilder {
+	b.cpu = val
+	return b
+}
+func (b computerBuilder) RAM(val int) ComputerBuilder {
+	b.ram = val
+	return b
+}
+func (b computerBuilder) MB(val string) ComputerBuilder {
+	b.mb = val
+	return b
+}
+
+func (b computerBuilder) Builder() Computer {
+	return Computer{
+		CPU: b.cpu,
+		RAM: b.ram,
+		MB:  b.mb,
+	}
 }
 
 func main() {
-	var r R    //interface
-	r = &TT{}      // присвоение
-	r = &T{22}
+	cb := NewCB()
+	da := cb.CPU("cor i9").RAM(64).MB("gigabate").Builder()
+	fmt.Println(da)
 
-	TypeAssertion(r)
 }
 
-func TypeAssertion(r R) {
-	if t, ok := r.(*T); ok {
-		fmt.Println(t.F())
-	}}
+type officeComputerBuilder struct {
+	computerBuilder
+}
