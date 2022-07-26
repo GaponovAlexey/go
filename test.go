@@ -1,85 +1,35 @@
 package main
 
-import "fmt"
-
-type Computer struct {
-	CPU string
-	RAM int
-	MB  string
-}
-
-type ComputerBuilder interface {
-	CPU(val string) ComputerBuilder
-	RAM(val int) ComputerBuilder
-	MB(val string) ComputerBuilder
-
-	Builder() Computer
-}
-
-type computerBuilder struct {
-	cpu string
-	ram int
-	mb  string
-}
-
-func NewCB() ComputerBuilder {
-	return computerBuilder{}
-}
-
-func (b computerBuilder) CPU(val string) ComputerBuilder {
-	b.cpu = val
-	return b
-}
-func (b computerBuilder) RAM(val int) ComputerBuilder {
-	b.ram = val
-	return b
-}
-func (b computerBuilder) MB(val string) ComputerBuilder {
-	b.mb = val
-	return b
-}
-
-func (b computerBuilder) Builder() Computer {
-	return Computer{
-		CPU: b.cpu,
-		RAM: b.ram,
-		MB:  b.mb,
-	}
-}
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
-	cb := NewCB()
-	da := cb.CPU("cor i9").RAM(64).MB("gigabate").Builder()
-	fmt.Println(da)
+	t := time.Now()
+	buf := make(chan int)
 
-	net := NewCF()
-	net.RAM(22)
-	n := net.Builder()
-	fmt.Println(n)
+	n := func() int {
+		i := 0
+		for ; i <= 100; i++ {
+			i++
+		}
+		return i
+	}()
 
-}
+	fmt.Println("100:", n)
 
-type officeComputerBuilder struct {
-	computerBuilder
-}
+	num := []int{1, 2, 3, 4, 5}
+	go func() {
+		for _, i := range num {
+			buf <- i
+		}
+		close(buf)
+	}()
 
-func NewCF() ComputerBuilder {
-	return &officeComputerBuilder{}
-}
-
-func (b *officeComputerBuilder) Builder() Computer {
-	if b.cpu == "" {
-		b.CPU("Pentium")
+	for v := range buf {
+		fmt.Println(v)
 	}
-	if b.ram == 0 {
-		b.RAM(2)
-	}
-	if b.mb == "" {
-		b.MB("gigabate")
-	}
-	return Computer{
-		CPU: b.cpu,
-		RAM: b.ram,
-		MB:  b.mb,
-	}
+	fmt.Println(time.Since(t).Nanoseconds())
+
 }
