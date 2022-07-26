@@ -22,17 +22,10 @@ func (s *TT) F() string {
 
 func main() {
 	var r R    //interface
-	t := &TT{} //type
-	r = t      // присвоение
+	r = &TT{}      // присвоение
+	r = &T{22}
 
-	tt := &T{22}
-	r = tt
-
-	TypeAssertion(tt)
-	if r == nil {
-		fmt.Printf("%#v %T", r, r)
-	}
-
+	TypeAssertion(r)
 }
 
 func TypeAssertion(r R) {
