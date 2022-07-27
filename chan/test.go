@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
-	"time"
 )
 
 func main() {
@@ -14,53 +13,49 @@ func main() {
 
 func workerPool() {
 	ctx, cancel := context.WithCancel(context.Background())
-	ctx, cancel = context.WithTimeout(context.Background(), time.Microsecond*20)
 	defer cancel()
 
+	f, s := make(chan int, 5), make(chan int, 5)
 	wg := &sync.WaitGroup{}
-
-	tp, pns := make(chan int, 5), make(chan int, 5)
 
 	for i := 0; i <= runtime.NumCPU(); i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			worker(ctx, tp, pns)
+			worker(ctx, f, s)
 		}()
 	}
 
 	go func() {
-		for i := 0; i <= 1000; i++ {
-			tp <- i
+		for i := 0; i <= 20; i++ {
+			f <- i
 		}
-		close(tp)
+		close(f)
 	}()
 
 	go func() {
 		wg.Wait()
-		close(pns)
+		close(s)
 	}()
-
-	var counter int
-	for res := range pns {
-		counter++
-		fmt.Println(res)
+	for s := range f {
+		fmt.Println("tp", s)
 	}
-	fmt.Println(counter)
+	for i := range s {
+		fmt.Println("pns", i)
+	}
 
 }
 
-func worker(ctx context.Context, toP <-chan int, proc chan<- int) {
+func worker(ctx context.Context, f <-chan int, s chan<- int) {
 	for {
 		select {
-		case <-ctx.Done(): // дожидается завершения контекста
+		case <-ctx.Done():
 			return
-		case v, ok := <-toP:
+		case f, ok := <-f:
 			if !ok {
 				return
 			}
-			time.Sleep(time.Microsecond)
-			proc <- v * v
+			s <- f + f
 		}
 	}
 }
