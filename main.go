@@ -3,60 +3,45 @@ package main
 import (
 	"context"
 	"fmt"
-	"sync"
 	"time"
+
+	
 )
 
 func main() {
-	withoutErrGroup()
-
+	errGroup()
 }
 
-func withoutErrGroup() {
-	var err error //error
-	ctx, cancel := context.WithCancel(context.Background())
-	wg := sync.WaitGroup{}
+func errGroup() {
+	g, ctx := errgroup.WithContext(context.Background())
 
-	wg.Add(3)
-
-	go func() {
+	g.Go(func() error {
 		time.Sleep(time.Second)
-		defer wg.Done()
 
 		select {
 		case <-ctx.Done():
-			return
+			return nil
 		default:
 			fmt.Println("first started")
 			time.Sleep(time.Second)
+			return nil
 		}
-	}()
-
-	go func() {
-		defer wg.Done()
-
+	})
+	g.Go(func() error {
+		fmt.Println("second started")
+		return fmt.Errorf("unexpected error in request 2")
+	})
+	g.Go(func() error {
 		select {
 		case <-ctx.Done():
-			return
-		default:
-			fmt.Println("second started")
-			err = fmt.Errorf("any error")
-			cancel()
-		}
-	}()
-
-	go func() {
-		defer wg.Done()
-
-		select {
-		case <-ctx.Done():
-			return
 		default:
 			fmt.Println("third started")
 			time.Sleep(time.Second)
 		}
-	}()
+		return nil
+	})
 
-	wg.Wait()
-	fmt.Println(err)
+	if err := g.Wait(); err != nil {
+		fmt.Println(err)
+	}
 }
