@@ -57,5 +57,7 @@ func withoutErrGroup() {
 	}()
 
 	wg.Wait()
-	fmt.Println(err)
+	if err != nil {
+		fmt.Println(err)
+	}
 }

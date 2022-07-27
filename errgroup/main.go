@@ -3,42 +3,65 @@ package main
 import (
 	"context"
 	"fmt"
-	"time"
 
 	"golang.org/x/sync/errgroup"
 )
 
 func main() {
 	errGroup()
+
 }
 
 func errGroup() {
 	g, ctx := errgroup.WithContext(context.Background())
 
 	g.Go(func() error {
-		time.Sleep(time.Second)
-
 		select {
 		case <-ctx.Done():
-			return nil
 		default:
-			fmt.Println("first started")
-			time.Sleep(time.Second)
-			return nil
+			fmt.Println("one")
+			i := 0
+			for ; i <= 10; i++ {
+				fmt.Println(i)
+			}
 		}
-	})
-	g.Go(func() error {
-		fmt.Println("second started")
-		return fmt.Errorf("unexpected error in request 2")
+		return fmt.Errorf("счётчик")
 	})
 	g.Go(func() error {
 		select {
 		case <-ctx.Done():
 		default:
-			fmt.Println("third started")
-			time.Sleep(time.Second)
+			fmt.Println("two")
+			i := 0
+			for ; i <= 10; i++ {
+				fmt.Println(i)
+			}
 		}
-		return nil
+		return fmt.Errorf("хуётчик")
+	})
+	g.Go(func() error {
+		select {
+		case <-ctx.Done():
+		default:
+			fmt.Println("two")
+			i := 0
+			for ; i <= 10; i++ {
+				fmt.Println(i)
+			}
+		}
+		return fmt.Errorf("пётричик")
+	})
+	g.Go(func() error {
+		select {
+		case <-ctx.Done():
+		default:
+			fmt.Println("three")
+			i := 0
+			for ; i <= 11; i++ {
+				fmt.Println(i)
+			}
+		}
+		return fmt.Errorf("пипи")
 	})
 
 	if err := g.Wait(); err != nil {
