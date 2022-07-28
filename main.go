@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/signal"
 	"runtime"
+	"syscall"
 	"time"
 )
 
@@ -11,23 +14,9 @@ var (
 )
 
 func main() {
-	timer := time.After(time.Second * 5)
-	c := make(chan int)
+	gracefulShutdown()
+}
 
-	go func() {
-		defer close(c)
-		for i := 0; i <= 50000; i++ {
-			select {
-			case <-timer:
-				fmt.Println("timer")
-				return
-			default:
-				c <- i
-			}
-		}
-	}()
-	for i := range c {
-		fmt.Println(i)
+func gracefulShutdown() {
 
-	}
 }

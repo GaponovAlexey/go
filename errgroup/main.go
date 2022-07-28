@@ -32,8 +32,7 @@ func errGroup() {
 		case <-ctx.Done():
 		default:
 			fmt.Println("two")
-			i := 0
-			for ; i <= 10; i++ {
+			for i := 0; i <= 10; i++ {
 				fmt.Println(i)
 			}
 		}
@@ -44,8 +43,7 @@ func errGroup() {
 		case <-ctx.Done():
 		default:
 			fmt.Println("two")
-			i := 0
-			for ; i <= 10; i++ {
+			for i := 0; i <= 10; i++ {
 				fmt.Println(i)
 			}
 		}
@@ -56,8 +54,7 @@ func errGroup() {
 		case <-ctx.Done():
 		default:
 			fmt.Println("three")
-			i := 0
-			for ; i <= 11; i++ {
+			for i := 0; i <= 11; i++ {
 				fmt.Println(i)
 			}
 		}
