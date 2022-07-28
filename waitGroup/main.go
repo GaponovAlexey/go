@@ -17,13 +17,14 @@ func main() {
 	for i := 0; i < runtime.NumCPU(); i++ {
 		wg.Add(1)
 		go func() {
-			for {
-				a, ok := <-ch
-				if !ok {
-					wg.Done()
-					return
-				}
-				fmt.Println(a)
+			for v := range ch {
+				fmt.Println("chan:", v)
+				// a, ok := <-ch
+				// if !ok {
+				// 	wg.Done()
+				// 	return
+				// }
+				// fmt.Println(a)
 			}
 		}()
 	}
