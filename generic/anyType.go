@@ -2,16 +2,6 @@ package main
 
 import "fmt"
 
-type Number interface {
-	int64 | float64
-}
-type CustInt int64
-
-func (ci CustInt) IsPositive() bool {
-	return ci > 0
-}
-
-type Numbers[T Number] []T
 
 func main() {
 	showContains()
@@ -40,14 +30,7 @@ func showContains() {
 	show(interface{}(1), interface{}("string"), any(struct{name string}{name: "Ji"}))
 }
 
-func cont[T comparable](el []T, sel T) bool {
-	for _, el := range el {
-		if sel == el {
-			return true
-		}
-	}
-	return false
-}
+
 
 func show[T any](el ...T) {
 	fmt.Println(el)
