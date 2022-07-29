@@ -19,20 +19,19 @@ func main() {
 }
 
 func showContains() {
-	// type Person struct {
-	// 	name     string
-	// 	age      int64
-	// 	jobTitle string
-	// }
-	// ints := []int64{1, 2, 3, 4, 5}
-	// fmt.Println("int:", find(ints, 4))
-	strin := []string{"Pero", "katya", "katya", "_"}
+	type Person struct {
+		name     string
+		age      int64
+		jobTitle string
+	}
+	ints := []int64{1, 2, 3, 4, 5}
+	fmt.Println("int:", cont(ints, 4))
 
-	fmt.Println("string:", cont(strin, "Pero"))
-	fmt.Println("string:", cont(strin, "katya"))
+	// string := []string{"Pero", "katya", "katya", "_"}
+	// fmt.Println("string:", cont(string, "katya"))
+	// fmt.Println("string:", cont(string, "Pero"))
 
 }
-
 func cont[T comparable](el []T, sel T) bool {
 	for _, el := range el {
 		if sel == el {
