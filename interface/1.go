@@ -17,7 +17,7 @@ func (f fanta) add(name string) string {
 }
 
 func seyHello(g Fantazer, name string) {
-	fmt.Println(g.add(name))
+	fmt.Println(g.add(name))// оборачивает add()
 
 }
 func main() {
