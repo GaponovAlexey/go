@@ -39,12 +39,12 @@ func add() {
 	fmt.Println(time.Since(s).Seconds())
 }
 
+var (
+	c  int64
+	wg sync.WaitGroup
+)
 func addAtomic() {
 	s := time.Now()
-	var (
-		c  int64
-		wg sync.WaitGroup
-	)
 	wg.Add(1000)
 	fmt.Println("Atomic:",atomic.LoadInt64(&c))
 	
@@ -53,8 +53,8 @@ func addAtomic() {
 		go func() {
 			defer wg.Done()
 			atomic.AddInt64(&c, 1)
-			atomic.AddInt64(&c, -1)
-			atomic.AddInt64(&c, 1)
+			// atomic.AddInt64(&c, -1)
+			// atomic.AddInt64(&c, 1)
 		}()
 	}
 	wg.Wait()
