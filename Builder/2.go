@@ -50,7 +50,7 @@ func (b computerBuilder) Builder() Computer {
 
 func main() {
 	cb := NewCB()
-	da := cb.
+	da := cb.CPU("cor i9").RAM(64).MB("gigabate").Builder()
 	fmt.Println(da)
 
 	net := NewCF()
