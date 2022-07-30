@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/GaponovAlexey/mysum"
+)
 
 type Fantazer interface {
 	add(string) string
@@ -18,11 +21,17 @@ func (f fanta) add(name string) string {
 
 func seyHello(g Fantazer, name string) {
 	fmt.Println(g.add(name))
-
+}
+func NewF() Fantazer {
+	return &fanta{}
 }
 func main() {
-	name := "zer"
-	seyHello(&fanta{}, name)
-	seyHello(&vodka{}, name)
+	// name := "zer"
+	// f := NewF()
+	data := mysum.Sum(2,5)
+	fmt.Println(data)
+	
+	// seyHello(&fanta{}, name)
+	// seyHello(&vodka{}, name)
 
 }

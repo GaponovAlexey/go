@@ -1,3 +1,5 @@
+github.com/GaponovAlexey/mysum v0.0.0-20220730142142-2d6458f88c06 h1:xWgmPPa8MNLZXllawpKslp05M84Mn8tSag5vh5a6HJk=
+github.com/GaponovAlexey/mysum v0.0.0-20220730142142-2d6458f88c06/go.mod h1:vquHudb6n6irLJpBScaAYMsnqRWdUW57pXM5T0CbJcQ=
 github.com/andybalholm/brotli v1.0.0 h1:7UCwP93aiSfvWpapti8g88vVVGp2qqtGyePsSuDafo4=
 github.com/andybalholm/brotli v1.0.0/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/gofiber/fiber v1.14.6 h1:QRUPvPmr8ijQuGo1MgupHBn8E+wW0IKqiOvIZPtV70o=
