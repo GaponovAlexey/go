@@ -15,14 +15,12 @@ func (v vodka) add(name string) string {
 func (f fanta) add(name string) string {
 	return fmt.Sprintln("Fanta:", name)
 }
-
 func seyHello(g Fantazer, name string) {
 	fmt.Println(g.add(name))
-
 }
+
 func main() {
 	name := "zer"
 	seyHello(&fanta{}, name)
 	seyHello(&vodka{}, name)
-
 }

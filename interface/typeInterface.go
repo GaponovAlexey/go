@@ -6,10 +6,6 @@ import (
 )
 
 func main() {
-data:= []int{1,2,3}
-fmt.Println(reflect.TypeOf(data))
-
-
 	m := map[string]interface{}{}
 	m["one"] = 1
 	m["two"] = 2.0
