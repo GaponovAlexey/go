@@ -5,6 +5,7 @@ go 1.18
 require golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 
 require (
+	github.com/GaponovAlexey/mysum v0.0.0-20220730142142-2d6458f88c06 // indirect
 	github.com/andybalholm/brotli v1.0.0 // indirect
 	github.com/gofiber/fiber v1.14.6 // indirect
 	github.com/gofiber/utils v0.0.10 // indirect

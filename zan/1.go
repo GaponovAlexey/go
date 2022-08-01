@@ -26,6 +26,7 @@ func (c *Counter) Value(key string) int {
 func main() {
 	key := "test"
 	c := Counter{c: make(map[string]int)}
+	
 	for i := 0; i < 1000; i++ {
 		go c.Inc(key)
 	}
