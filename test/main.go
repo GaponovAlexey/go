@@ -26,6 +26,7 @@ func handleFib(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+	
 	io.WriteString(w, strconv.Itoa(fib(n)))
 
 }
