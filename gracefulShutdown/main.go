@@ -19,9 +19,7 @@ func main() {
 
 func gracefulShutdown() {
 	sugChan := make(chan os.Signal, 1)
-
 	signal.Notify(sugChan, syscall.SIGINT, syscall.SIGTERM)
-
 	timer := time.After(5 * time.Second)
 
 	for {

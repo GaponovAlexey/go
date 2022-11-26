@@ -16,12 +16,7 @@ func (f fanta) add(name string) string {
 	return fmt.Sprintln("Fanta:", name)
 }
 func seyHello(g Fantazer, name string) {
-<<<<<<< HEAD:interface/2.go
 	fmt.Println(g.add(name))
-=======
-	fmt.Println(g.add(name))// оборачивает add()
-
->>>>>>> 1b8c51674580b22e70ef90e30b6302073f949d98:interface/1.go
 }
 
 func main() {

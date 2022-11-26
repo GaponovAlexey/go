@@ -7,9 +7,7 @@ import (
 
 func main() {
 	chanAsPromise()
-
 }
-
 
 func fr(num int) <-chan string {
 	rChan := make(chan string)
