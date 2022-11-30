@@ -2,21 +2,15 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"gaponovalexey/mod/data"
+
 )
 
 func main() {
-	country := "london"
+	newdata := data.Data
+	fmt.Println(newdata)
+	data.DataPackage("ivan")
 
-	c, err := callName(country)
-
-	log.Println(c)
-	log.Println(err)
-
-}
-
-func callName(c string) (string, error) {
-	c = c + " " + "counrty"
-	// newc := append(c, "country")
-	return c, fmt.Errorf("error %v", c)
+	dada := 0
+	fmt.Println(dada)
 }
