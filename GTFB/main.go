@@ -6,13 +6,17 @@ import (
 )
 
 func main() {
-	var userName string
-	var books uint8
+	country := "london"
 
-	books = 3
-	books = 255
-	// fmt.Scan(&userName)
-	fmt.Scan(books, userName)
-	log.Println(&userName)
+	c, err := callName(country)
 
+	log.Println(c)
+	log.Println(err)
+
+}
+
+func callName(c string) (string, error) {
+	c = c + " " + "counrty"
+	// newc := append(c, "country")
+	return c, fmt.Errorf("error %v", c)
 }
