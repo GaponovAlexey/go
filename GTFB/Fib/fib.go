@@ -1,5 +1,7 @@
 package fib
 
+import "fmt"
+
 var (
 	cache map[int]int
 )
@@ -17,6 +19,7 @@ func Fib(n int) int {
 	}
 	sum := Fib(n-1) + Fib(n-2)
 	cache[n] = sum
-	
+	fmt.Println(sum)
+
 	return sum
 }

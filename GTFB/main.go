@@ -2,17 +2,13 @@ package main
 
 import (
 	"fmt"
+	"gaponovalexey/mod/fib"
 
 )
 
 func main() {
 
-	nums := make([]int, 1, 2)
-	app(nums, 1)
-	fmt.Println(nums)
-
-}
-
-func Fib(sl int) int {
+da := fib.Fib(11)
+fmt.Println(da - da)
 
 }
