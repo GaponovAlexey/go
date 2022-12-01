@@ -1,15 +1,8 @@
 package main
 
-import (
-	"fmt"
-
-)
+import "fmt"
 
 func main() {
-	mapExample := map[string]string{
-		"name": "Alexey",
-		"age":  "30",
-	}
-	fmt.Println(mapExample)
+	fmt.Println("da")
 
 }
