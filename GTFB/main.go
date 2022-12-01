@@ -1,8 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+)
 
 func main() {
-	fmt.Println("da")
+
+	nums := make([]int, 1, 2)
+	app(nums, 1)
+	fmt.Println(nums)
+
+}
+
+func Fib(sl int) int {
 
 }
