@@ -11,6 +11,4 @@ func main() {
 	fmt.Println(newdata)
 	data.DataPackage("ivan")
 
-	dada := 0
-	fmt.Println(dada)
 }
