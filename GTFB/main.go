@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"gaponovalexey/mod/data"
 
 )
 
 func main() {
-	newdata := data.Data
-	fmt.Println(newdata)
-	data.DataPackage("ivan")
+	mapExample := map[string]string{
+		"name": "Alexey",
+		"age":  "30",
+	}
+	fmt.Println(mapExample)
 
 }
