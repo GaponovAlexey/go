@@ -1,18 +1,21 @@
 package main
 
-import (
-	"fmt"
+import "fmt"
 
-)
+type IPAddr [4]byte
 
-func main() {
-	i := 2
-	describe(i)
+// TODO: Add a "String() string" method to IPAddr.
 
-	d := "tt"
-	describe(d)
+func(v IPAddr) String() string {
+	return fmt.Sprintf("%v", v[0])
 }
 
-func describe(i interface{}) {
-	fmt.Printf("(%v, %T)\n", i, i)
+func main() {
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	for name, ip := range hosts {
+		fmt.Printf("%v: %v\n", name, ip)
+	}
 }
