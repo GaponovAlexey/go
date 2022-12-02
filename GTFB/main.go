@@ -2,13 +2,10 @@ package main
 
 import (
 	"fmt"
-	"gaponovalexey/mod/fib"
+	"time"
 
 )
 
 func main() {
-
-da := fib.Fib(11)
-fmt.Println(da - da)
-
+	fmt.Print(time.Now().Hour())
 }
