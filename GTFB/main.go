@@ -1,14 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-
-
+)
 
 func main() {
 	i := 2
 	describe(i)
-
 
 	d := "tt"
 	describe(d)
