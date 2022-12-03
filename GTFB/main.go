@@ -4,24 +4,13 @@ import (
    "fmt"
    "net/http"
 
-   "github.com/gin-gonic/gin"
-
 )
 
-type Body struct {
-   Name string `json:"name"`
-}
-
+func HomePage(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "go is super easy!")}
+	
 func main() {
-   engine:=gin.New()
-   engine.POST("/test", func(context *gin.Context) {
-      body:=Body{}
-      if err:=context.BindJSON(&body);err!=nil{
-         context.AbortWithError(http.StatusBadRequest,err)
-         return
-      }
-      fmt.Println(body)
-      context.JSON(http.StatusAccepted,&body)
-   })
-   engine.Run(":3000")
+	fmt.Println("hi") 
+	http.HandleFunc("/", HomePage)
+	http.ListenAndServe(":3000", nil)
 }
