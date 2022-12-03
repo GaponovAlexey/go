@@ -5,23 +5,21 @@ import (
 
 )
 
-func goChan(i []int, c chan int) {
-	sum := 0
-	for _, s := range i {
-		sum += s
+func fibo(n int, c chan int) {
+	x, y := 0, 1
+	for i := 0; i <= n; i++ {
+		c <- x
+		x, y = y, x+y
 	}
-	c <- sum
+	close(c)
 }
 
 func main() {
+	ch := make(chan int, 10)
+	go fibo(cap(ch), ch)
 
-	s := []int{7, 2, 8, -9, 4, 0}
-
-	c := make(chan int)
-	go goChan(s, c)
-	go goChan(s, c)
-	x, f := <-c, <-c
-
-	fmt.Println(x,f, x+f)
+	for ch := range ch {
+		fmt.Println(ch)
+	}
 
 }
