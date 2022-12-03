@@ -2,28 +2,26 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 )
 
-type MyError struct {
-	When time.Time
-	What string
+func goChan(i []int, c chan int) {
+	sum := 0
+	for _, s := range i {
+		sum += s
+	}
+	c <- sum
 }
-
-
-func (e *MyError) Error() string {
-	return fmt.Sprintf("at %v, %s", e.When, e.What)
-}
-
-
-func run() error {
-	return &MyError{time.Now(), "it didn't work"}
-}
-
 
 func main() {
-	if err := run(); err != nil {
-		fmt.Println(err)
-	}
+
+	s := []int{7, 2, 8, -9, 4, 0}
+
+	c := make(chan int)
+	go goChan(s, c)
+	go goChan(s, c)
+	x, f := <-c, <-c
+
+	fmt.Println(x,f, x+f)
+
 }
